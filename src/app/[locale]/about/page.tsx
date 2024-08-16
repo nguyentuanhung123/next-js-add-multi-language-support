@@ -1,4 +1,18 @@
 import { useTranslations } from "next-intl"; 
+import { getMessages } from "next-intl/server";
+
+export async function generateMetadata({
+    params: { locale },
+}: {
+    params: { locale: string };
+}) {
+    const messages: any = await getMessages({locale});
+    const title = messages.NavbarLinks.aboutTitle;
+  
+    return {
+      title
+    }
+}
 
 const AboutPage = () => {
 

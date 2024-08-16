@@ -1,4 +1,18 @@
 import { useTranslations } from "next-intl"; // useTranslations là một hook từ thư viện next-intl, được sử dụng để lấy các thông điệp đã bản địa hóa cho component.
+import { getMessages } from "next-intl/server";
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  const messages: any = await getMessages({locale});
+  const title = messages.NavbarLinks.homeTitle;
+
+  return {
+    title
+  }
+}
 
 export default function Home() {
 
